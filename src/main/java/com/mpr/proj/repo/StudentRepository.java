@@ -18,5 +18,6 @@ public interface StudentRepository extends CrudRepository<Student, UUID> {
     @Modifying
     void deleteById(UUID uuid);
 
-    //@Query
+    List<Student> findAllByName(String name);
+
 }

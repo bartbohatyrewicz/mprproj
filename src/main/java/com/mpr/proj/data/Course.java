@@ -11,13 +11,13 @@ import java.util.UUID;
 @Setter
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Course {
     @Id
     private String acronym;
     private String name;
     private String description;
     private int hours;
-    @OneToMany
+    @OneToMany(mappedBy = "course")
     private List<Student> students;
 }
