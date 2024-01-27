@@ -37,11 +37,15 @@ public class DbService {
 
     public StudentRead getStudentById(Integer id){
         return studentRepository.findById(id).map(studentMapper::toStudentDto)
-                .orElseThrow(()-> new NotFoundException("Student of given UUID not found"));
+                .orElseThrow(()-> new NotFoundException("Student of given id ("+id+") not found"));
     }
 
-    public void deleteAllByCourse(Course course){
-        studentRepository.deleteAllByCourse(course);
+    public List<StudentRead> getAllStudents(){
+        return studentRepository.findAll().stream().map(studentMapper::toStudentDto).toList();
+    }
+
+    public void deleteAllByCourseAcronym(String acronym){
+        studentRepository.deleteAllByCourseAcronym(acronym);
     }
 
     public Course createCourse(CourseCreate dto){
@@ -51,6 +55,7 @@ public class DbService {
     }
 
     public void deleteCourse(String acronym){
+        deleteAllByCourseAcronym(acronym);
         courseRepository.deleteByAcronym(acronym);
     }
 
@@ -62,6 +67,9 @@ public class DbService {
     public int getStudentCountInCourse(String acronym){
         return courseRepository.countStudentsInCourse(acronym)
                 .orElseThrow(() -> new NotFoundException("Course of given acronym ("+acronym+") not found"));
+    }
+    public List<CourseRead> getAllCourses(){
+        return courseRepository.findAll().stream().map(courseMapper::toCourseDto).toList();
     }
 
 }

@@ -13,7 +13,7 @@ public class StudentCreate {
     private String name;
     @NotBlank
     private String surname;
-    private int ECTS = 0;
+    private int ECTSdebt = 0;
     @NotBlank
     private short age;
 }

@@ -14,7 +14,7 @@ public class StudentMapper {
         dto.setAge(student.getAge());
         dto.setName(student.getName());
         dto.setSurname(student.getSurname());
-        dto.setECTS(student.getECTS());
+        dto.setECTSdebt(student.getECTSdebt());
         return dto;
     }
 
@@ -22,7 +22,7 @@ public class StudentMapper {
         Student student = new Student();
         student.setName(studentCreate.getName());
         student.setSurname(studentCreate.getSurname());
-        student.setECTS(studentCreate.getECTS());
+        student.setECTSdebt(studentCreate.getECTSdebt());
         student.setAge(studentCreate.getAge());
         return student;
     }

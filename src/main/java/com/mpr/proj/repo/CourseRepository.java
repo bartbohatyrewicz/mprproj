@@ -23,5 +23,6 @@ public interface CourseRepository extends CrudRepository<Course, String> {
 
     Optional<Course> findByAcronym(String acronym);
 
-
+    @Override
+    List<Course> findAll();
 }

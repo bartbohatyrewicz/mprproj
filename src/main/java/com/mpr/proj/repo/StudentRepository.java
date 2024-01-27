@@ -21,8 +21,9 @@ public interface StudentRepository extends CrudRepository<Student, Integer> {
 
     @Transactional
     @Modifying
-    void deleteAllByCourse(Course course);
+    void deleteAllByCourseAcronym(String acronym);
 
-    List<Student> findAllByName(String name);
+    @Override
+    List<Student> findAll();
 
 }

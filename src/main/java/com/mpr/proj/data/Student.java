@@ -3,8 +3,6 @@ package com.mpr.proj.data;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @Entity
@@ -13,7 +11,7 @@ public class Student {
     @Id
     @GeneratedValue
     private Integer id;
-    private int ECTS;
+    private int ECTSdebt;
     private String name;
     private String surname;
     private short age;
