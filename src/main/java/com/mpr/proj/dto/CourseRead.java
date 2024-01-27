@@ -1,5 +1,6 @@
 package com.mpr.proj.dto;
 
+import com.mpr.proj.data.Student;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,4 +16,5 @@ public class CourseRead {
     private String name;
     private String description;
     private int hours;
+    private List<Student> students;
 }

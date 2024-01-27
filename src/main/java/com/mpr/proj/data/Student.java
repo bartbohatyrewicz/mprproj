@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Student {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Integer id;
     private int ECTS;
     private String name;
     private String surname;

@@ -1,5 +1,6 @@
 package com.mpr.proj.dto;
 
+import com.mpr.proj.data.Course;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,9 +12,10 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 public class StudentRead {
-    private UUID id;
+    private Integer id;
     private String name;
     private String surname;
     private int ECTS;
     private short age;
+    private Course course;
 }
