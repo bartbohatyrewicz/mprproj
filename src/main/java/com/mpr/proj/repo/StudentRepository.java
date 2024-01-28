@@ -15,11 +15,9 @@ import java.util.UUID;
 @Repository
 public interface StudentRepository extends CrudRepository<Student, Integer> {
 
-    @Transactional
     @Modifying
     void deleteById(Integer id);
 
-    @Transactional
     @Modifying
     void deleteAllByCourseAcronym(String acronym);
 

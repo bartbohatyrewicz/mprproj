@@ -11,6 +11,7 @@ import com.mpr.proj.mappers.CourseMapper;
 import com.mpr.proj.mappers.StudentMapper;
 import com.mpr.proj.repo.CourseRepository;
 import com.mpr.proj.repo.StudentRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,9 +32,14 @@ public class DbService {
         return student;
     }
 
-    public void deleteStudent(Integer id){
+    @Transactional
+    public Integer deleteStudent(Integer id){
+        studentRepository.findById(id).map(studentMapper::toStudentDto)
+                .orElseThrow(()-> new NotFoundException("Student of given id ("+id+") not found"));
         studentRepository.deleteById(id);
+        return id;
     }
+
 
     public StudentRead getStudentById(Integer id){
         return studentRepository.findById(id).map(studentMapper::toStudentDto)
@@ -44,8 +50,12 @@ public class DbService {
         return studentRepository.findAll().stream().map(studentMapper::toStudentDto).toList();
     }
 
-    public void deleteAllByCourseAcronym(String acronym){
+    @Transactional
+    public Integer deleteAllByCourseAcronym(String acronym){
+        Integer count = courseRepository.countStudentsInCourse(acronym)
+                .orElseThrow(() -> new NotFoundException("Course of given acronym ("+acronym+") not found"));
         studentRepository.deleteAllByCourseAcronym(acronym);
+        return count;
     }
 
     public Course createCourse(CourseCreate dto){
@@ -54,9 +64,13 @@ public class DbService {
         return course;
     }
 
-    public void deleteCourse(String acronym){
+    @Transactional
+    public String deleteCourse(String acronym){
+        courseRepository.findByAcronym(acronym).map(courseMapper::toCourseDto)
+                .orElseThrow(() -> new NotFoundException("Course of given acronym ("+acronym+") not found"));
         deleteAllByCourseAcronym(acronym);
         courseRepository.deleteByAcronym(acronym);
+        return acronym;
     }
 
     public CourseRead getByAcronym(String acronym){

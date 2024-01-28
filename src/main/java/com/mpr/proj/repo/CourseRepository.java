@@ -17,7 +17,6 @@ public interface CourseRepository extends CrudRepository<Course, String> {
     @Query("select count(course.students) from Course course where course.acronym = :acronym")
     Optional<Integer> countStudentsInCourse(String acronym);
 
-    @Transactional
     @Modifying
     void deleteByAcronym(String acronym);
 
