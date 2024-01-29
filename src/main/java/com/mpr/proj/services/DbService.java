@@ -26,6 +26,16 @@ public class DbService {
     private final StudentMapper studentMapper;
     private final CourseMapper courseMapper;
 
+
+    @Transactional
+    public Boolean saveBoth(StudentCreate studentDto, CourseCreate courseDto){
+        Student student = studentMapper.toStudent(studentDto);
+        Course course = courseMapper.toCourse(courseDto);
+        studentRepository.save(student);
+        courseRepository.save(course);
+        return true;
+    }
+    @Transactional
     public Student createStudent(StudentCreate dto){
         Student student = studentMapper.toStudent(dto);
         studentRepository.save(student);
@@ -58,6 +68,7 @@ public class DbService {
         return count;
     }
 
+    @Transactional
     public Course createCourse(CourseCreate dto){
         Course course = courseMapper.toCourse(dto);
         courseRepository.save(course);
