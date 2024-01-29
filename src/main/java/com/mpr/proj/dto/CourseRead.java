@@ -16,5 +16,5 @@ public class CourseRead {
     private String name;
     private String description;
     private int hours;
-    private List<Student> students;
+    private List<StudentRead> students;
 }

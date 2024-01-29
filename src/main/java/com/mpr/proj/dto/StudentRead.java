@@ -17,5 +17,5 @@ public class StudentRead {
     private String surname;
     private int ECTSdebt;
     private short age;
-    private Course course;
+    private CourseRead course;
 }

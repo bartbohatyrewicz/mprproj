@@ -20,4 +20,10 @@ public class Course {
     private int hours;
     @OneToMany(mappedBy = "course")
     private List<Student> students;
+
+    public Course(String acronym, String name, int hours){
+        this.acronym = acronym;
+        this.name = name;
+        this.hours = hours;
+    }
 }

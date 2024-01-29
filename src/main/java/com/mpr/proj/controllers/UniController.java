@@ -9,6 +9,7 @@ import com.mpr.proj.dto.StudentCreate;
 import com.mpr.proj.dto.StudentRead;
 import com.mpr.proj.services.DbService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,10 +23,12 @@ public class UniController {
     private final DbService service;
 
     @PostMapping("/students")
+    @ResponseStatus(HttpStatus.CREATED)
     public Student createStudent(@RequestBody StudentCreate dto){
         return service.createStudent(dto);
     }
     @PostMapping("/courses")
+    @ResponseStatus(HttpStatus.CREATED)
     public Course createCourse(@RequestBody CourseCreate dto){
         return service.createCourse(dto);
     }
@@ -58,6 +61,7 @@ public class UniController {
         return service.deleteCourse(acronym);
     }
     @DeleteMapping("/course/{acronym}/students")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Integer deleteStudentsByCourseAcronym(@PathVariable String acronym){
         return service.deleteAllByCourseAcronym(acronym);
     }

@@ -17,4 +17,12 @@ public class Student {
     private short age;
     @ManyToOne
     private Course course;
+
+    public Student(String name, String surname, int ECTSdebt, short age, Course course) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.course = course;
+        this.ECTSdebt = ECTSdebt;
+    }
 }
